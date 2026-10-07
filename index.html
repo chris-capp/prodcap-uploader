@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prodcap Uploader</title>
+<meta name="description" content="The tool Prodcap uses to post its own 60-second mixing lessons to TikTok and YouTube, after each one is reviewed by hand.">
+<link rel="icon" href="icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <a class="mark" href="./"><img src="icon.png" alt="">Prodcap Uploader</a>
+    <nav><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a></nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1 class="display">Prodcap<span>Uploader</span></h1>
+      <p class="lede">The tool Prodcap uses to post its own 60-second mixing lessons. Each video is watched and approved by hand, then goes out on its scheduled day.</p>
+      <div class="links">
+        <a class="btn primary" href="https://www.tiktok.com/@prodcap">Watch on TikTok</a>
+        <a class="btn" href="https://www.youtube.com/@prodcap4">Watch on YouTube</a>
+      </div>
+    </div>
+    <div class="clip">
+      <video src="media/loop.mp4" poster="media/loop-poster.jpg" autoplay muted loop playsinline aria-label="Clip from Low End 101, a Prodcap lesson on mixing kick and bass"></video>
+    </div>
+  </section>
+</div>
+
+<section class="band">
+  <div class="wrap">
+    <h2>How a video gets posted</h2>
+    <p class="intro">Nothing is posted automatically. A person signs off on every video, and the settings are theirs.</p>
+    <ol class="chain" id="chain">
+      <li><h3>Make</h3><p>A new lesson is rendered with its cover, title and caption.</p></li>
+      <li><h3>Review</h3><p>The creator watches it, edits the text, and picks who can view it and whether comments, Duet and Stitch are on.</p></li>
+      <li><h3>Approve</h3><p>It gets the next day with nothing else scheduled on TikTok or YouTube.</p></li>
+      <li><h3>Post</h3><p>On that day it uploads to Prodcap's own accounts with exactly the settings chosen.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>What it can access</h2>
+    <p class="intro">Only Prodcap's own accounts are connected. Sign-in happens on TikTok's and Google's own pages, and tokens stay on Prodcap's computer.</p>
+    <div class="access">
+      <div class="uses">
+        <h3>Uses</h3>
+        <ul>
+          <li>Your display name and avatar, to show which account a video goes to</li>
+          <li>The privacy and interaction options TikTok allows for your account</li>
+          <li>Permission to upload and publish the videos you approve</li>
+          <li>Dates already scheduled on YouTube, so days never double up</li>
+        </ul>
+      </div>
+      <div class="never">
+        <h3>Never touches</h3>
+        <ul>
+          <li>Followers, likes or messages</li>
+          <li>Analytics or viewing history</li>
+          <li>Anyone else's videos or accounts</li>
+          <li>Your password</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2>The lessons</h2>
+    <p class="intro">Short, visual explainers on one mixing tool at a time.</p>
+    <div class="lessons">
+      <figure><img src="media/eq-101.jpg" alt="EQ 101 title card" loading="lazy"><figcaption>EQ</figcaption></figure>
+      <figure><img src="media/compression-101.jpg" alt="Compression 101 title card" loading="lazy"><figcaption>Compression</figcaption></figure>
+      <figure><img src="media/reverb-101.jpg" alt="Reverb 101 title card" loading="lazy"><figcaption>Reverb</figcaption></figure>
+      <figure><img src="media/delay-101.jpg" alt="Delay 101 title card" loading="lazy"><figcaption>Delay</figcaption></figure>
+      <figure><img src="media/saturation-101.jpg" alt="Saturation 101 title card" loading="lazy"><figcaption>Saturation</figcaption></figure>
+      <figure><img src="media/sidechain-101.jpg" alt="Sidechain 101 title card" loading="lazy"><figcaption>Sidechain</figcaption></figure>
+      <figure><img src="media/stereo-101.jpg" alt="Stereo 101 title card" loading="lazy"><figcaption>Stereo width</figcaption></figure>
+      <figure><img src="media/chorus-101.jpg" alt="Chorus 101 title card" loading="lazy"><figcaption>Chorus</figcaption></figure>
+      <figure><img src="media/limiter-101.jpg" alt="Limiter 101 title card" loading="lazy"><figcaption>Limiter</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Prodcap. A private tool for Prodcap's own accounts.</span>
+    <nav><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="mailto:prodcap4@gmail.com">prodcap4@gmail.com</a></nav>
+  </div>
+</footer>
+
+<script>
+  // One pass of the signal through the chain, lighting each step as it arrives.
+  const chain = document.getElementById('chain');
+  const steps = [...chain.children];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const start = () => {
+    if (reduce || innerWidth <= 760) { steps.forEach((s) => s.classList.add('lit')); return; }
+    chain.classList.add('run');
+    steps.forEach((s, i) => setTimeout(() => s.classList.add('lit'), 300 + 2600 * (i / (steps.length - 1)) * 0.92));
+  };
+  new IntersectionObserver((entries, obs) => {
+    if (entries[0].isIntersecting) { start(); obs.disconnect(); }
+  }, { threshold: 0.5 }).observe(chain);
+</script>
+</body>
+</html>
